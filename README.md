@@ -1,2 +1,1 @@
-# elixir-bnf
-BNF and Syntax diagram of Elixir programming language
+# BNF and Syntax diagrams of Elixir programming language
