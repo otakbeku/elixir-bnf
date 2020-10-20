@@ -1,62 +1,44 @@
 # Basic terminology
+
 <alpha> ::= A | B | C | E | G | H | J | K | L | M | N | P | R | S | T | V | W | X | Y | Z| a | b | c | e | g | h | j | k | l | m | n | p | r | s | t | v | w | x | y | z | _ 
-
-<special_character>::=!|"|#|$|%|&|'|(|)|*|+|,|-|.|/|:|;|<|=|>|?|@|[|\|]|^|_|`|{|||}|~| 
-
-<digits> ::= <zero>| <digits _exclude_zero> 
-
+<special_character> ::= ! | $ | % | & | ( | ) | * | + | , | - | . | / | : | ; | < | = | > | ? | @ | [ | ] | ^ | _ | ` | { | | | } | ~ 
+<digits> ::= <zero> | <digits_exclude_zero> 
 <zero> ::= 0 
-
-<digits _exclude_zero>::= 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 
-
-<binary_digit> :: 0|1 
-
-<octal_digit> :: 0|1 | 2 | 3 | 4 | 5 | 6 | 7 
-
-< hexadecimal _digit> :: 0|1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | A | B | C | D | E | F 
-
-<number> ::=<digits_exclude_zero>|<digits_exclude_zero><digits> 
-
-<elixir_program_cli>::=<alpha>|<num>|<integer>|<float>|<boolean>|<atom>|<string>|<list>|<tuple> 
+<digits _exclude_zero> ::= 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 
+<binary_digit> ::= 0 | 1 
+<octal_digit> ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 
+<hexadecimal_digit> ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | A | B | C | D | E | F 
+<number> ::= <digits_exclude_zero> | <digits_exclude_zero><digits> 
+<elixir_program_cli> ::= <alpha> | <num> | <integer> | <float> | <boolean> | <atom> | <string> | <list> | <tuple> 
 
 # Integer
-<integer>::=<decimal>|<binary>|<octal>|<hexadecimal> 
 
-<decimal>::=<number>|<decimal><decimal> 
-
+<integer>::=<decimal> | <binary> | <octal> | <hexadecimal> 
+<decimal>::=<number> | <decimal><decimal> 
 <binary> ::= 0b<binary_term> 
-
 <binary_term> ::= <binary_digit> | <binary_digit> <binary_term> 
-
 <octal> ::= 0o<octal_term>  
-
 <octal_term> ::= <octal_digit> | <octal_digit> <octal_term>  
-
 <hexadecimal> ::= 0x<hexadecimal_term>  
-
 <hexadecimal_term> ::= <hexadecimal_digit> | <hexadecimal_digit> <hexadecimal_term> 
-
 
 # Float
 
-<float>::=<number>.<number>|<number>.e+<number>|<number>.e-<number> 
-
+<float> ::= <decimal>.<decimal> | <decimal>.<decimal>e+<decimal> | <decimal>.<decimal>e-<decimal> 
 
 # Boolean
 
-<boolean>::=true|false 
-
+<boolean> ::= true | false 
 
 # Atom/Symbol
 
-<atom>::=:<alpha_list> 
-<alpha_list>::=<alpha>|<alpha_list><alpha_list> 
-
+<atom> ::= :<alpha_list> 
+<alpha_list> ::= <alpha> | <alpha_list><alpha_list> 
 
 # String
 
-<string>::=”<char_list>” 
-<char_list> ::= <alpha>|<num>|<special_characters>|<char_list><char_list> 
+<string> ::= "<char_list>" 
+<char_list> ::= <alpha> | <num> | <special_characters> | <char_list><char_list> 
 
 # List
 
