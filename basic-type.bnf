@@ -28,17 +28,29 @@
 
 # Boolean
 
-<boolean> ::= true | false 
+<boolean> ::= true | false | :true | :false
 
 # Atom/Symbol
 
-<atom> ::= :<alpha_list> 
-<alpha_list> ::= <alpha> | <alpha_list><alpha_list> 
+<atom> ::= :<alpha><atom_term> | :<string> | :@
+<atom_term> ::= <alpha> | @ | <decimal> | <atom_term><atom_term>
 
 # String
 
-<string> ::= "<char_list>" 
-<char_list> ::= <alpha> | <num> | <special_characters> | <char_list><char_list> 
+<string>::="<string_term>"
+<string_term> ::= '
+    | <alpha>
+    | <decimal>
+    | <special_characters>
+    | <escape_sequence>
+    | <string_interpolation>
+    | <string_term><string_term>
+<string_interpolation> ::= #{ <expression> }
+<escape_sequence> ::= \<escape_codes>
+    | \x<decimal_digit><decimal_digit>
+    | \u<decimal_digit><decimal_digit><decimal_digit><decimal_digit>
+    | \u{<decimal>}
+<escape_codes> ::= " | ' | \ | a | b | d | e | f | n | r | s | t | v | 0 | #
 
 # List
 
