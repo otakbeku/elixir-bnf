@@ -1,30 +1,32 @@
 # Basic terminology
 
-<alpha> ::= A | B | C | E | G | H | J | K | L | M | N | P | R | S | T | V | W | X | Y | Z| a | b | c | e | g | h | j | k | l | m | n | p | r | s | t | v | w | x | y | z | _ 
-<special_character> ::= ! | $ | % | & | ( | ) | * | + | , | - | . | / | : | ; | < | = | > | ? | @ | [ | ] | ^ | _ | ` | { | | | } | ~ 
-<digits> ::= <zero> | <digits_exclude_zero> 
-<zero> ::= 0 
-<digits _exclude_zero> ::= 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 
-<binary_digit> ::= 0 | 1 
-<octal_digit> ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 
-<hexadecimal_digit> ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | A | B | C | D | E | F 
-<number> ::= <digits_exclude_zero> | <digits_exclude_zero><digits> 
-<elixir_program_cli> ::= <alpha> | <num> | <integer> | <float> | <boolean> | <atom> | <string> | <list> | <tuple> 
+<alpha> ::= <alpha_lower> | <alpha_upper> | _
+<alpha_upper> ::= A | B | C | E | G | H | J | K | L | M | N | P | R | S | T | V | W | X | Y | Z
+<alpha_lower> ::= a | b | c | e | g | h | j | k | l | m | n | p | r | s | t | v | w | x | y | z
+<special_character> ::= ! | $ | % | & | ( | ) | * | + | , | - | . | / | : | ; | < | = | > | ? | @ | [ | ] | ^ | _ | ` | { | | | } | ~
+<digits> ::= <zero> | <digits_exclude_zero>
+<zero> ::= 0
+<digits_exclude_zero> ::= 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+<binary_digit> ::= 0 | 1
+<octal_digit> ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7
+<hexadecimal_digit> ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | A | B | C | D | E | F
+<number> ::= <digits_exclude_zero> | <digits_exclude_zero><digits>
+<elixir_program_cli> ::= <alpha> | <num> | <integer> | <float> | <boolean> | <atom> | <string> | <list> | <tuple>
 
 # Integer
 
-<integer>::=<decimal> | <binary> | <octal> | <hexadecimal> 
-<decimal>::=<number> | <decimal><decimal> 
-<binary> ::= 0b<binary_term> 
-<binary_term> ::= <binary_digit> | <binary_digit> <binary_term> 
-<octal> ::= 0o<octal_term>  
-<octal_term> ::= <octal_digit> | <octal_digit> <octal_term>  
-<hexadecimal> ::= 0x<hexadecimal_term>  
-<hexadecimal_term> ::= <hexadecimal_digit> | <hexadecimal_digit> <hexadecimal_term> 
+<integer>::=<decimal> | <binary> | <octal> | <hexadecimal>
+<decimal>::=<decimal_digit> | <decimal_digit><decimal>
+<binary> ::= 0b<binary_term>
+<binary_term> ::= <binary_digit> | <binary_digit> <binary_term>
+<octal> ::= 0o<octal_term>
+<octal_term> ::= <octal_digit> | <octal_digit> <octal_term>
+<hexadecimal> ::= 0x<hexadecimal_term>
+<hexadecimal_term> ::= <hexadecimal_digit> | <hexadecimal_digit> <hexadecimal_term>
 
 # Float
 
-<float> ::= <decimal>.<decimal> | <decimal>.<decimal>e+<decimal> | <decimal>.<decimal>e-<decimal> 
+<float> ::= <decimal>.<decimal> | <decimal>.<decimal>e+<decimal> | <decimal>.<decimal>e-<decimal>
 
 # Boolean
 
@@ -32,19 +34,29 @@
 
 # Atom/Symbol
 
-<atom> ::= :<alpha><atom_term> | :<string> | :@
-<atom_term> ::= <alpha> | @ | <decimal> | <atom_term><atom_term>
+<atom> ::= :@
+    | :<alpha><atom_term>
+    | :<string>
+    | <boolean>
+    | <alias>
+<atom_term_list> ::= <atom_term> | <atom_term><atom_term_list>
+<atom_term> ::= @
+    | <alpha>
+    | <decimal>
 
+<alias> ::= <alpha_upper><alias_term_list>
+<alias_term_list> ::= <alias_term> | <alias_term><alias_term_list>
+<alias_term> ::= <alpha> | <decimal>
 # String
 
-<string>::="<string_term>"
+<string>::="<string_term_list>"
+<string_term_list> ::= <string_term> | <string_term><string_term_list>
 <string_term> ::= '
     | <alpha>
     | <decimal>
     | <special_characters>
     | <escape_sequence>
     | <string_interpolation>
-    | <string_term><string_term>
 <string_interpolation> ::= #{ <expression> }
 <escape_sequence> ::= \<escape_codes>
     | \x<decimal_digit><decimal_digit>
@@ -55,3 +67,12 @@
 # List
 
 # Tuple
+
+# Function
+
+<function_expr> ::= <namespace>.<function_name>(<parameter_list>)
+    | <function>(<parameter_list>)
+<parameter_list> ::= <parameter>,<parameter_list> | <parameter>
+<parameter> ::= <expression>
+
+<nameless_function> ::= fn <parameter_list> -> <exoression_list> end
