@@ -77,9 +77,9 @@
     | <alpha>
     | <decimal>
 
+<aliases> ::= <alias> | <alias>.<aliases>
 <alias> ::= <alpha_upper><alias_term_list>
-<alias_term_list> ::= <alias_term> | <alias_term><alias_term_list>
-<alias_term> ::= <alpha> | <decimal>
+<alias_term_list> ::= <alpha_num> | <alpha_num><alias_term_list>
 
 # String
 
