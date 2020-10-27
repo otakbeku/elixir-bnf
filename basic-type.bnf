@@ -13,6 +13,23 @@
 <elixir_program_cli> ::= <alpha> | <integer> | <float> | <boolean> | <atom> | <string> | <list> | <tuple>
 <alphanum> ::= <alpha> | <decimal>
 
+<assignment> ::= <variable_name> = <expression>
+<variable_name> ::= <identifier_name>
+<expression_list> ::= <expression>; | <expression>; <expression_list>
+
+# Identifier
+
+<identifier_name> ::= <identifier_start>
+    | <identifier_start><identifier_end>
+    | <identifier_start><identifier_continue><identifier_end>
+<identifier_start> ::= <alpha_lower> | _
+<identifier_continue> ::= <alphanum> | <alphanum><identifier_continue>
+<identifier_end> ::= <alpha>
+    | <decimal>
+    | ?
+    | !
+
+
 # Integer
 
 <integer>::=<decimal> | <binary> | <octal> | <hexadecimal>
@@ -63,6 +80,7 @@
 <alias> ::= <alpha_upper><alias_term_list>
 <alias_term_list> ::= <alias_term> | <alias_term><alias_term_list>
 <alias_term> ::= <alpha> | <decimal>
+
 # String
 
 <string>::="<string_term_list>"
