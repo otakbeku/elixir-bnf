@@ -83,11 +83,5 @@
 
 # Tuple
 
-# Function
 
-<function_expr> ::= <namespace>.<function_name>(<parameter_list>)
-    | <function>(<parameter_list>)
-<parameter_list> ::= <parameter>,<parameter_list> | <parameter>
-<parameter> ::= <expression>
 
-<nameless_function> ::= fn <parameter_list> -> <exoression_list> end
