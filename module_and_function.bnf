@@ -1,0 +1,30 @@
+# Module
+
+<module_definition> ::= defmodule <alias> do <module_body> end
+<module_body> ::= <expression_list><module_body>
+    | <module_specifix_expr><module_body>
+    | <expression_list>
+    | <module_specifix_expr>
+<module_specifix_expr> ::= <named_function_def> |
+<named_function_def> ::= <def_token> <function_head> <do_block>
+<def_token> ::= def | defp
+<do_block> ::=  do <expression_list> end
+    | , do: <expression>
+    | , do: (<expression_list>)
+<function_head> ::= <function_name>
+    | <function_name>(<arg_list>)
+    | <function_name>(<arg_list>) when <expression>
+<arg_list> ::= <arg> | <arg>,<arg_list>
+<arg> ::= <arg_name> | <arg_name> \\ <constant>
+<arg_name> ::= <identifier_name>
+
+# Function
+
+<parameter_list> ::= <parameter>,<parameter_list> | <parameter>
+<parameter> ::= <expression>
+<named_function_call> ::= <alias>.<qualified_call> | <non_qualified_call>
+<qualified_call> ::= <qualified_call_term>(<parameter_list>) | <qualified_call_term><parameter_list>
+<qualified_call_term> ::= <operation> | <function_name>
+<function_name> ::= <identifier_name>
+<nameless_function> ::= fn <parameter_list> -> <expression_list> end
+<nameless_function_call> ::= <variable>.(<parameter_list>) | <nameless_function>.(<parameter_list>)
