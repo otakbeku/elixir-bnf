@@ -77,9 +77,17 @@
     | <alpha>
     | <decimal>
 
-<aliases> ::= <alias> | <alias>.<aliases>
+# Alias
+
+<nested_alias> ::= <alias> | <alias>.<nested_alias>
 <alias> ::= <alpha_upper><alias_term_list>
 <alias_term_list> ::= <alpha_num> | <alpha_num><alias_term_list>
+
+<aliasing_alias> ::= alias <nested_alias> | alias <nested_alias>, as: <alias>
+<require_alias> ::= require <nested_alias> | require <nested_alias>.{<alias_list>}
+<alias_list> ::= <nested_alias>, <alias_list>
+<import_alias> ::= import <nested_alias> | import <nested_alias>, only: <keyword_list>
+<use_alias> ::= use <nested_alias>
 
 # String
 
