@@ -5,7 +5,15 @@
     | <module_specifix_expr><module_body>
     | <expression_list>
     | <module_specifix_expr>
-<module_specifix_expr> ::= <named_function_def> |
+<module_specifix_expr> ::= <named_function_def> | @<attribute_name> <attribute_expression>
+<attribute_name> ::= <identifier_name>
+<attribute_expression> ::= <list>
+    | <tuples>
+    | <maps>
+    | <atom>
+    | <integer>
+    | <bitstrings>
+    | <function_capture>
 <named_function_def> ::= <def_token> <function_head> <do_block>
 <def_token> ::= def | defp
 <do_block> ::=  do <expression_list> end
