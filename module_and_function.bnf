@@ -20,11 +20,11 @@
     | , do: <expression>
     | , do: (<expression_list>)
 <function_head> ::= <function_name>
-    | <function_name>(<arg_list>)
-    | <function_name>(<arg_list>) when <expression>
-<arg_list> ::= <arg> | <arg>,<arg_list>
-<arg> ::= <arg_name> | <arg_name> \\ <constant>
-<arg_name> ::= <identifier_name>
+    | <function_name>(<parameter_list>)
+    | <function_name>(<parameter_list>) when <expression>
+<parameter_list> ::= <parameter> | <parameter>,<parameter_list>
+<parameter> ::= <parameter_name> | <parameter_name> \\ <constant>
+<parameter_name> ::= <identifier_name>
 
 # Function
 
