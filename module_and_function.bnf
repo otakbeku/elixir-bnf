@@ -28,11 +28,17 @@
 
 # Function
 
-<parameter_list> ::= <parameter>,<parameter_list> | <parameter>
-<parameter> ::= <expression>
-<named_function_call> ::= <alias>.<qualified_call> | <non_qualified_call>
-<qualified_call> ::= <qualified_call_term>(<parameter_list>) | <qualified_call_term><parameter_list>
-<qualified_call_term> ::= <operation> | <function_name>
+<arg_list> ::= <arg>,<arg_list> | <arg>
+<arg> ::= <expression>
+<function_call> ::= <alias>.<named_function_call>
+    | <named_function_call>
+    | <nameless_function_call>
+<named_function_call> ::= <named_function_call_term>(<arg_list>) | <named_function_call_term><arg_list>
+<named_function_call_term> ::= <operation> | <function_name>
 <function_name> ::= <identifier_name>
 <nameless_function> ::= fn <parameter_list> -> <expression_list> end
-<nameless_function_call> ::= <variable>.(<parameter_list>) | <nameless_function>.(<parameter_list>)
+<function_capture> ::= &<nested_alias>.<function_name>/<integer> | &<function_name>/<integer>
+<nameless_function_call> ::= <function_name>.(<arg_list>)
+    | <nameless_function>.(<arg_list>)
+    | (<function_capture>).(<arg_list>)
+
