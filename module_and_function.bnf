@@ -1,0 +1,44 @@
+# Module
+
+<module_definition> ::= defmodule <alias> do <module_body> end
+<module_body> ::= <expression_list><module_body>
+    | <module_specifix_expr><module_body>
+    | <expression_list>
+    | <module_specifix_expr>
+<module_specifix_expr> ::= <named_function_def> | @<attribute_name> <attribute_expression>
+<attribute_name> ::= <identifier_name>
+<attribute_expression> ::= <list>
+    | <tuples>
+    | <maps>
+    | <atom>
+    | <integer>
+    | <bitstrings>
+    | <function_capture>
+<named_function_def> ::= <def_token> <function_head> <do_block>
+<def_token> ::= def | defp
+<do_block> ::=  do <expression_list> end
+    | , do: <expression>
+    | , do: (<expression_list>)
+<function_head> ::= <function_name>
+    | <function_name>(<parameter_list>)
+    | <function_name>(<parameter_list>) when <expression>
+<parameter_list> ::= <parameter> | <parameter>,<parameter_list>
+<parameter> ::= <parameter_name> | <parameter_name> \\ <constant>
+<parameter_name> ::= <identifier_name>
+
+# Function
+
+<arg_list> ::= <arg>,<arg_list> | <arg>
+<arg> ::= <expression>
+<function_call> ::= <alias>.<named_function_call>
+    | <named_function_call>
+    | <nameless_function_call>
+<named_function_call> ::= <named_function_call_term>(<arg_list>) | <named_function_call_term><arg_list>
+<named_function_call_term> ::= <operation> | <function_name>
+<function_name> ::= <identifier_name>
+<nameless_function> ::= fn <parameter_list> -> <expression_list> end
+<function_capture> ::= &<nested_alias>.<function_name>/<integer> | &<function_name>/<integer>
+<nameless_function_call> ::= <function_name>.(<arg_list>)
+    | <nameless_function>.(<arg_list>)
+    | (<function_capture>).(<arg_list>)
+

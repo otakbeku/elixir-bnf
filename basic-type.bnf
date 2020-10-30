@@ -4,23 +4,58 @@
 <alpha_upper> ::= A | B | C | E | G | H | J | K | L | M | N | P | R | S | T | V | W | X | Y | Z
 <alpha_lower> ::= a | b | c | e | g | h | j | k | l | m | n | p | r | s | t | v | w | x | y | z
 <special_character> ::= ! | $ | % | & | ( | ) | * | + | , | - | . | / | : | ; | < | = | > | ? | @ | [ | ] | ^ | _ | ` | { | | | } | ~
+<escape_codes> ::= " | ' | \ | a | b | d | e | f | n | r | s | t | v | 0 | #
 <zero> ::= 0
 <digits_exclude_zero> ::= 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
 <binary_digit> ::= 0 | 1
 <octal_digit> ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7
-<hexadecimal_digit> ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | A | B | C | D | E | F
+<hexadecimal_digit> ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | A | B | C | D | E | F | a | b | c | d | e | f
 <elixir_program_cli> ::= <alpha> | <integer> | <float> | <boolean> | <atom> | <string> | <list> | <tuple>
+<alphanum> ::= <alpha> | <decimal>
+
+<assignment> ::= <variable_name> = <expression>
+<variable_name> ::= <identifier_name>
+<expression_list> ::= <expression>; | <expression>; <expression_list>
+
+# Identifier
+
+<identifier_name> ::= <identifier_start>
+    | <identifier_start><identifier_end>
+    | <identifier_start><identifier_continue><identifier_end>
+<identifier_start> ::= <alpha_lower> | _
+<identifier_continue> ::= <alphanum> | <alphanum><identifier_continue>
+<identifier_end> ::= <alpha>
+    | <decimal>
+    | ?
+    | !
+
 
 # Integer
 
 <integer>::=<decimal> | <binary> | <octal> | <hexadecimal>
-<decimal>::=<decimal_digit> | <decimal_digit><decimal>
+<decimal>::= <decimal_digit> | <decimal_digit><decimal_continue>
+<decimal_continue> ::= <decimal_digit>
+    | _ <decimal_digit>
+    | <decimal_digit> <decimal_continue>
+    | _ <decimal_digit> <decimal_continue>
 <binary> ::= 0b<binary_term>
-<binary_term> ::= <binary_digit> | <binary_digit> <binary_term>
+<binary_term> ::= <binary_digit> | <binary_digit><binary_continue>
+<binary_continue> ::= <binary_digit>
+    | _ <binary_digit>
+    | <binary_digit> <binary_continue>
+    | _ <binary_digit> <binary_continue>
 <octal> ::= 0o<octal_term>
-<octal_term> ::= <octal_digit> | <octal_digit> <octal_term>
+<octal_term> ::= <octal_digit> | <octal_digit><octal_continue>
+<octal_continue> ::= <octal_digit>
+    | _ <octal_digit>
+    | <octal_digit> <octal_continue>
+    | _ <octal_digit> <octal_continue>
 <hexadecimal> ::= 0x<hexadecimal_term>
-<hexadecimal_term> ::= <hexadecimal_digit> | <hexadecimal_digit> <hexadecimal_term>
+<hexadecimal_term> ::= <hexadecimal_digit> | <hexadecimal_digit><hexadecimal_continue>
+<hexadecimal_continue> ::= <hexadecimal_digit>
+    | _ <hexadecimal_digit>
+    | <hexadecimal_digit> <hexadecimal_continue>
+    | _ <hexadecimal_digit> <hexadecimal_continue>
 
 # Float
 
@@ -42,9 +77,18 @@
     | <alpha>
     | <decimal>
 
+# Alias
+
+<nested_alias> ::= <alias> | <alias>.<nested_alias>
 <alias> ::= <alpha_upper><alias_term_list>
-<alias_term_list> ::= <alias_term> | <alias_term><alias_term_list>
-<alias_term> ::= <alpha> | <decimal>
+<alias_term_list> ::= <alpha_num> | <alpha_num><alias_term_list>
+
+<aliasing_alias> ::= alias <nested_alias> | alias <nested_alias>, as: <alias>
+<require_alias> ::= require <nested_alias> | require <nested_alias>.{<alias_list>}
+<alias_list> ::= <nested_alias>, <alias_list>
+<import_alias> ::= import <nested_alias> | import <nested_alias>, only: <keyword_list>
+<use_alias> ::= use <nested_alias>
+
 # String
 
 <string>::="<string_term_list>"
@@ -60,17 +104,27 @@
     | \x<decimal_digit><decimal_digit>
     | \u<decimal_digit><decimal_digit><decimal_digit><decimal_digit>
     | \u{<decimal>}
-<escape_codes> ::= " | ' | \ | a | b | d | e | f | n | r | s | t | v | 0 | #
+
+
+# Char List
+
+<charlist>::='<string_term_list>'
+<charlist_term_list> ::= <charlist_term> | <charlist_term><charlist_term_list>
+<charlist_term> ::= "
+    | <alpha>
+    | <decimal>
+    | <special_characters>
+    | <escape_sequence>
+    | <string_interpolation>
+<string_interpolation> ::= #{ <expression> }
+<escape_sequence> ::= \<escape_codes>
+    | \x<decimal_digit><decimal_digit>
+    | \u<decimal_digit><decimal_digit><decimal_digit><decimal_digit>
+    | \u{<decimal>}
 
 # List
 
 # Tuple
 
-# Function
 
-<function_expr> ::= <namespace>.<function_name>(<parameter_list>)
-    | <function>(<parameter_list>)
-<parameter_list> ::= <parameter>,<parameter_list> | <parameter>
-<parameter> ::= <expression>
 
-<nameless_function> ::= fn <parameter_list> -> <exoression_list> end

@@ -30,13 +30,11 @@
 !! Membership Expression
 	<membership_in_expr> ::= <element> in <collection>
 	<membership_notin_expr> ::= <element> not in <collection>
-!! Module Expression
-	<module_attribute_expr> ::= @<expr>
 ## Range Expression
 	<range_expr> ::= <range_term>..<range_term>
 	<range_term> ::= <integer> | <function_expr>
 ## Binary Concatenation Expression
-	<binary_concatenation_expr> ::= <binary> | <binary_concatenation_expr> <> <binary> 
+	<binary_concatenation_expr> ::= <binary> | <binary_concatenation_expr> <> <binary>
 ## Pipeline Expression
 	<pipeline_expr> ::= <expr> |> <pipeline_term>
 	<pipeline_term> ::= <function_expr> | <function_expr> |> <pipeline_term>
@@ -46,14 +44,10 @@
 <pin_expr> ::= ^<term> = <term>
 ## Match Expression
 <match_expr> ::= <term> = <term>
-## Capture Expression
-<capture_expr> ::= &(<expr>)
 ## Comparison Expression
 	<comparison_expr> :: <term> <comparison_operator> <term>
 	<comparison_operator> :: == | === | != | !== | < | > | <= | >=
 !! . - dot operator
 !! :: - type operator
 !! => - see %{}
-!! when - see Guards
 !! <- - see for and with
-!! \\ - see Default arguments
