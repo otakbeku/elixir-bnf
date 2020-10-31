@@ -1,0 +1,15 @@
+# Error Handling
+
+<try_rescue_catch_after> ::= try do <expression_list> <try_error_handling> end
+    | try do <expression_list> <try_error_handling> <try_final_handling> end
+<try_error_handling> ::= rescue <right_arrow_expr_list>
+    | catch <right_arrow_expr_list>
+    | rescue <right_arrow_expr_list> catch <right_arrow_expr_list>
+<try_final_handling> ::= <try_else_term>
+    | <try_after_term>
+    | <try_else_term> <try_after_term>
+<try_else_term> ::= else <right_arrow_expr_list>
+<try_after_term> ::= after <expression_list>
+<try_expression_list> ::= <right_arrow_expr_list> | <right_arrow_expr_list> <expression_list>
+<right_arrow_expr_list> ::= <right_arrow_expr>; | <right_arrow_expr>; <right_arrow_expr_list>
+<right_arrow_expr> ::= <parameter_list> -> <expression_list>
