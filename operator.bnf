@@ -10,13 +10,17 @@
 	<arithmetic_term> ::= <integer> | <float>
 	<arithmetic_operator> ::= + | - | * | /
 ## List Expression
-	<list_expr> ::= <list_expr> <list_operator> <list_expr> | <list_term> | (<list_expr>)
-	<list_term> ::= <list> | <term>
-	<list_operator> ::= ++ || --
+	<list_expr> ::= <list> | <list_concatenation_expr> | <list_subtraction_expr> | (<list_expr>)
+	<list_concatenation_expr> ::= <list_expr> ++ <list_expr> || <list_expr> ++ <term> 
+	<list_subtraction_expr> ::= <list_expr> -- <list_expr>
 ## Boolean Expression
-	<boolean_expr> ::= <boolean_expr> <boolean_operator> <boolean_expr> | <boolean_term> | (<boolean_expr>)
-	<boolean_term> ::= <boolean> | not(<boolean_term>) | !<boolean_term>	
-	<boolean_operator> ::= and | && | or | ||
+	<boolean_expr> ::= <strict_boolean_expr> | <relaxed_boolean_operator> | <relaxed_boolean_term> | (<boolean_expr>)
+	<relaxed_boolean_expr> ::= <boolean_expr> <relaxed_boolean_operator> <boolean_expr>
+	<strict_boolean_expr> ::= <strict_boolean_term> <strict_boolean_operator> <boolean_expr>
+	<relaxed_boolean_operator> ::= && | ||
+	<strict_boolean_operator> ::= and | or
+	<strict_boolean_term> ::= <boolean> | not(<strict_boolean_term>) | !<strict_boolean_term>
+	<relaxed_boolean_term> ::= <term> | not(<relaxed_boolean_term>) | !<relaxed_boolean_term>
 !! Membership Expression
 	<membership_in_expr> ::= <element> in <collection>
 	<membership_notin_expr> ::= <element> not in <collection>
