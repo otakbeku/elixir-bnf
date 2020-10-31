@@ -128,10 +128,9 @@
     | \u{<decimal>}
 
 # List
-
-<list> ::= [<list_elements>]
+<list> ::= [<list_element_array>]
+<list_element_array> ::= <list_element> | <list_element>,<list_element_array>
 <list_elements> ::= <string>
-    |,
     ||
     |[
     |]
@@ -140,9 +139,9 @@
 
 # Tuple
 
-<tuple> ::= {<tuple_elements>}
+<tuple> ::= {<tuple_element_array>}
+<tuple_element_array> ::= <tuple_elements> | <tuple_elements>,<tuple_element_array>
 <tuple_elements> ::= <string>
-    |,
     |<atom>
     |<integer>
 
