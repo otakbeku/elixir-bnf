@@ -97,7 +97,8 @@
 <aliasing_alias> ::= alias <nested_alias> | alias <nested_alias>, as: <alias>
 <require_alias> ::= require <nested_alias> | require <nested_alias>.{<alias_list>}
 <alias_list> ::= <nested_alias>, <alias_list>
-<import_alias> ::= import <nested_alias> | import <nested_alias>, only: <keyword_list>
+<import_alias> ::= import <nested_alias> | import <nested_alias>, <import_options> <keyword_list>
+<import_options> ::= only: | except:
 <use_alias> ::= use <nested_alias>
 
 # String
@@ -119,7 +120,7 @@
 
 # Char List
 
-<charlist>::='<string_term_list>'
+<charlist>::='<charlist_term_list>'
 <charlist_term_list> ::= <charlist_term> | <charlist_term><charlist_term_list>
 <charlist_term> ::= "
     | <alpha>
@@ -137,5 +138,18 @@
 
 # Tuple
 
+# Sigil
+
+<sigil> ::= ~<sigil_char><sigil_args><sigil_modifier>
+<sigil_args> ::= / <string_term_list> /
+    | | <string_term_list> |
+    | " <string_term_list> "
+    | ' <string_term_list> '
+    | ( <string_term_list> )
+    | [ <string_term_list> ]
+    | { <string_term_list> }
+    | < <string_term_list> >
+<sigil_char> ::= <alpha>
+<sigil_modifier> ::= <alpha>
 
 
