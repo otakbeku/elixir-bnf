@@ -136,6 +136,7 @@
     |]
     |<atom>
     |<integer>
+    |<term>
 
 # Tuple
 
@@ -144,6 +145,7 @@
 <tuple_elements> ::= <string>
     |<atom>
     |<integer>
+    |<term>
 
 # Function
 
