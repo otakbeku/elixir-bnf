@@ -15,7 +15,7 @@
 	<list_operator> ::= ++ || --
 ## Boolean Expression
 	<boolean_expr> ::= <boolean_expr> <boolean_operator> <boolean_expr> | <boolean_term> | (<boolean_expr>)
-	<boolean_term> ::= <boolean> | not(<term>) | !<term>	
+	<boolean_term> ::= <boolean> | not(<boolean_term>) | !<boolean_term>	
 	<boolean_operator> ::= and | && | or | ||
 !! Membership Expression
 	<membership_in_expr> ::= <element> in <collection>
