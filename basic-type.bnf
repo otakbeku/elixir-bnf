@@ -130,15 +130,23 @@
 # List
 
 <list> ::= [<list_elements>]
-<list_elements> ::= <string>|,|||[|]|<atom>|<integer>
+<list_elements> ::= <string>
+    |,
+    ||
+    |[
+    |]
+    |<atom>
+    |<integer>
 
 # Tuple
 
 <tuple> ::= {<tuple_elements>}
-<tuple_elements> ::= <string>|,|<atom>|<integer>
+<tuple_elements> ::= <string>
+    |,
+    |<atom>
+    |<integer>
 
 # Function
-
 
 <nameless_function> ::= fn <parameter_list> -> <exoression_list> end
 

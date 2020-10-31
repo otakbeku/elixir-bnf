@@ -1,0 +1,68 @@
+# Case
+
+<case_expr> ::= case <patterns> do <case_clause_exprs> end
+<patterns> ::= <list> | <tuple> | <term>
+<case_clause_exprs> ::= <case_clause_expr> | <case_clause_expr><case_clause_exprs>
+<case_clause_expr> ::= <case_condition_expr> -> <case_result>
+<case_condition_expr> ::= _ | <integer> | <float> | <alpha> | <guards> | :error | <term> | ^<term>
+<guards> ::= <guard_clause> when <guards_expr>
+<guards_expr> ::= <comparison_expr> 
+    | <type_checks> 
+    | <boolean_strict_expr> 
+    | <arithmetic_expr> 
+    | <unary_expr>
+    | <in_comparison_operator>
+    | <not_in_comparison_operator>
+    | <bitwise_expr>
+    | <term>
+<type_checks> ::= is_atom(<term>)
+    | is_binary(<term>)
+    | is_bitstring(<term>)
+    | is_boolean(<term>)
+    | is_exception(<term>)
+    | is_exception(<term>, <exception_name>)
+    | is_float(<term>)
+    | is_function(<term>)
+    | is_function(<term>, <function_arity>)
+    | is_integer(<term>)
+    | is_list(<term>)
+    | is_map(<term>)
+    | is_map_key(<map>, <map_key>)
+    | is_nil(<term>)
+    | is_number(<term>)
+    | is_pid(<term>)
+    | is_port(<term>)
+    | is_reference(<term>)
+    | is_struct(<term>)
+    | is_struct(<term>, <struct_name>)
+    | is_tuple(<term>)
+<case_result> ::= <term>
+<guard_clause> ::= <def_token> <function_head> | <term>
+
+# Case supplimentary
+<function_arity> ::= <non_neg_integer> | <boolean>
+<exception_name> ::= <alpha>
+<struct_name> ::= <alpha>
+
+# Map
+<map>::=
+<map_key>::= <term> | <boolean>
+
+# Operator supplimentary
+<bitwise_expr> ::= <integer> &&& <integer>
+    | <integer> <<< <integer>
+    | <integer> >>> <integer>
+    | <integer> ^^^ <integer>
+    | <integer> ||| <integer>
+    | ---<integer>
+    | band(<integer>, <integer>)
+    | bnot(<integer>, <integer>)
+    | bor(<integer>, <integer>)
+    | bsl(<integer>, <integer>) # bitshift left
+    | bsr(<integer>, <integer>) # bitshift right
+    | bxor(<integer>, <integer>)
+
+# Cond
+<cond_expr> ::= cond do <cond_clause> end
+<cond_clause> ::= <expression_list> -> <expression_list>
+
