@@ -1,0 +1,41 @@
+# Case
+
+<case_expr> ::= case <patterns> do <case_clause_exprs> end
+<patterns> ::= <list> | <tuple> | <term>
+<case_clause_exprs> ::= <case_clause_expr> | <case_clause_expr><case_clause_exprs>
+<case_clause_expr> ::= <case_condition_expr> -> <case_result>
+<case_condition_expr> ::= _ | <integer> | <float> | <alpha> | <guards> | :error | <term> | ^<term>
+<guards> ::= <guard_clause> when <guards_expr>
+<guards_expr> ::= <comparison_expr> 
+    | <type_checks> 
+    | <boolean_strict_expr> 
+    | <arithmetic_expr> 
+    | <unary_expr>
+    | <in_comparison_operator>
+    | <not_in_comparison_operator>
+    | <bitwise_expr>
+<case_result> ::= <term>
+<guard_clause> ::= <def_token> <function_head> | <term>
+
+# Case supplementary
+<function_arity> ::= <non_neg_integer> | <boolean>
+<exception_name> ::= <alpha>
+<struct_name> ::= <alpha>
+
+# Map
+<map>::= %{<key_value_pairs>}
+<key_value_pairs> ::= <key_value_pair> | <key_value_pair>, <key_value_pairs>
+<key_value_pair> ::= <map_key>: <map_key_value>
+<map_key>::= <term> | <boolean> | <atom>
+<map_key_value> ::= <term> | <boolean>
+
+    
+# Cond
+<cond_expr> ::= cond do <cond_clauses> end
+<cond_clauses> ::= <<cond_clauses> | <cond_clauses>
+<cond_clause> ::= <conditions> -> <expression_list>
+<conditions> ::= <comparison_expr>
+
+# if
+<if_expr> ::= if <if_clauses> do: <expression_list> end | if <if_clauses> do: <expression_list>, else <> end
+

@@ -128,8 +128,32 @@
     | \u{<decimal>}
 
 # List
+<list> ::= [<list_element_array>]
+<list_element_array> ::= <list_element> | <list_element>,<list_element_array>
+<list_elements> ::= <string>
+    ||
+    |[
+    |]
+    |<atom>
+    |<integer>
+    |<term>
 
 # Tuple
 
+<tuple> ::= {<tuple_element_array>}
+<tuple_element_array> ::= <tuple_elements> | <tuple_elements>,<tuple_element_array>
+<tuple_elements> ::= <string>
+    |<atom>
+    |<integer>
+    |<term>
+
+# Function
+
+<nameless_function> ::= fn <parameter_list> -> <exoression_list> end
 
 
+# Process
+
+# Port kayaknya belum perlu
+
+# Map
