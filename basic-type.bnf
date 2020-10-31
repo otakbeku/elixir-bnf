@@ -29,11 +29,13 @@
     | ?
     | !
 
-
 # Integer
 
-<integer>::=<decimal> | <binary> | <octal> | <hexadecimal>
-<decimal>::= <decimal_digit> | <decimal_digit><decimal_continue>
+<integer> ::= <non_neg_integer>
+    | <neg_integer>
+<neg_integer> ::= -<non_neg_integer>
+<non_neg_integer> ::= <decimal> | <binary> | <octal> | <hexadecimal>
+<decimal> ::= <decimal_digit> | <decimal_digit><decimal_continue>
 <decimal_continue> ::= <decimal_digit>
     | _ <decimal_digit>
     | <decimal_digit> <decimal_continue>
@@ -59,7 +61,10 @@
 
 # Float
 
-<float> ::= <decimal>.<decimal> | <decimal>.<decimal>e+<decimal> | <decimal>.<decimal>e-<decimal>
+<float> ::= <neg_float> 
+    | <non_neg_float>
+<neg_float> ::= -<non_neg_float>
+<non_neg_float> ::= <decimal>.<decimal> | <decimal>.<decimal>e+<decimal> | <decimal>.<decimal>e-<decimal>
 
 # Boolean
 

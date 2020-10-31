@@ -1,10 +1,9 @@
 ## Unary Expression
 	<unary_expr> ::= <unary_positive_expr> | <unary_negative_expr>
-	<unary_positive_expr> ::= +<unary_term>
-	<unary_positive_term> ::= <integer> | <float>
+	<unary_positive_expr> ::= +<unary_positive_term> | <unary_positive_term>
+	<unary_positive_term> ::= <integer> | <float> | (<unary_expr>)
 	<unary_negative_expr> ::= -<unary_negative_term>
-	<unary_negative_term> ::= <non_neg_integer> | <non_neg_float> | (<neg_integer>) | (<neg_float>)
-	### Edge Case: -(<neg_integer>) instead of -<neg_integer>, -(<neg_float>) instead of -<neg_float>
+	<unary_negative_term> ::= <non_neg_integer> | <non_neg_float> | (<neg_integer>) | (<neg_float>) | (<unary_expr>)
 ## Arithmetic Expression
 	<arithmetic_expr> ::= <arithmetic_expr> <arithmetic_operator> <arithmetic_expr> | <arithmetic_term> | (<arithmetic_expr>)
 	<arithmetic_term> ::= <integer> | <float>
