@@ -1,10 +1,10 @@
-!! Unary Expression
+## Unary Expression
 	<unary_expr> ::= <unary_positive_expr> | <unary_negative_expr>
 	<unary_positive_expr> ::= +<unary_term>
-	<unary_positive_term> ::= <integer> | <float> | (unary_positive_term)
+	<unary_positive_term> ::= <integer> | <float>
 	<unary_negative_expr> ::= -<unary_negative_term>
-	<unary_negative_term> ::= <non_neg_integer> | <non_neg_float> | <unary_negative_term> | <neg_integer> | <neg_float>
-	### Edge Case: -(<-neg_integer>) instead of -<neg_integer>, -(<neg_float>) instead of -<neg_float>
+	<unary_negative_term> ::= <non_neg_integer> | <non_neg_float> | (<neg_integer>) | (<neg_float>)
+	### Edge Case: -(<neg_integer>) instead of -<neg_integer>, -(<neg_float>) instead of -<neg_float>
 ## Arithmetic Expression
 	<arithmetic_expr> ::= <arithmetic_expr> <arithmetic_operator> <arithmetic_expr> | <arithmetic_term> | (<arithmetic_expr>)
 	<arithmetic_term> ::= <integer> | <float>
@@ -14,16 +14,19 @@
 	<list_concatenation_expr> ::= <list_expr> ++ <list_expr> || <list_expr> ++ <term> 
 	<list_subtraction_expr> ::= <list_expr> -- <list_expr>
 ## Boolean Expression
-	<boolean_expr> ::= <strict_boolean_expr> | <relaxed_boolean_operator> | <relaxed_boolean_term> | (<boolean_expr>)
+	<boolean_expr> ::= <strict_boolean_expr> | <relaxed_boolean_expr> | <relaxed_boolean_term> | <not_boolean_expr> | (<boolean_expr>)
+	<not_boolean_expr> ::= not(<boolean_expr>) | !<boolean_expr>
 	<relaxed_boolean_expr> ::= <boolean_expr> <relaxed_boolean_operator> <boolean_expr>
 	<strict_boolean_expr> ::= <strict_boolean_term> <strict_boolean_operator> <boolean_expr>
 	<relaxed_boolean_operator> ::= && | ||
 	<strict_boolean_operator> ::= and | or
-	<strict_boolean_term> ::= <boolean> | not(<strict_boolean_term>) | !<strict_boolean_term>
-	<relaxed_boolean_term> ::= <term> | not(<relaxed_boolean_term>) | !<relaxed_boolean_term>
-!! Membership Expression
+	<strict_boolean_term> ::= <boolean>
+	<relaxed_boolean_term> ::= <term>
+## Membership Expression
 	<membership_in_expr> ::= <element> in <collection>
 	<membership_notin_expr> ::= <element> not in <collection>
+	<element> ::= <term>
+	<collection> ::= <list> | <range_expr>
 ## Range Expression
 	<range_expr> ::= <range_term>..<range_term>
 	<range_term> ::= <integer> | <function_expr>
