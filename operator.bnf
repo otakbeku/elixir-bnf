@@ -43,6 +43,13 @@
 ## Comparison Expression
 	<comparison_expr> :: <term> <comparison_operator> <term>
 	<comparison_operator> :: == | === | != | !== | < | > | <= | >=
+## Bitwise Expression
+<bitwise_expr> ::= <integer> &&& <integer>
+    | <integer> <<< <integer>
+    | <integer> >>> <integer>
+    | <integer> ^^^ <integer>
+    | <integer> ||| <integer>
+    | ---<integer>
 !! . - dot operator
 !! :: - type operator
 !! => - see %{}

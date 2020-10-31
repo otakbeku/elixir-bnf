@@ -29,16 +29,6 @@
 <map_key>::= <term> | <boolean> | <atom>
 <map_key_value> ::= <term> | <boolean>
 
-# Struct supplementary
-<Struct> ::= <>
-
-# Operator supplementary
-<bitwise_expr> ::= <integer> &&& <integer>
-    | <integer> <<< <integer>
-    | <integer> >>> <integer>
-    | <integer> ^^^ <integer>
-    | <integer> ||| <integer>
-    | ---<integer>
     
 # Cond
 <cond_expr> ::= cond do <cond_clauses> end
