@@ -36,14 +36,6 @@
 <exception_name> ::= <alpha>
 <struct_name> ::= <alpha>
 
-# Map
-<map>::= %{<key_value_pairs>}
-<key_value_pairs> ::= <key_value_pair> | <key_value_pair>, <key_value_pairs>
-<key_value_pair> ::= <map_key>: <map_key_value>
-<map_key>::= <term> | <boolean> | <atom>
-<map_key_value> ::= <term> | <boolean>
-
-
 # Cond
 <cond_expr> ::= cond do <cond_clauses> end
 <cond_clauses> ::= <<cond_clauses> | <cond_clauses>
