@@ -51,5 +51,5 @@
 <conditions> ::= <comparison_expr>
 
 # if
-<if_expr> ::= if <if_clauses> do: <expression_list> end | if <if_clauses> do: <expression_list>, else <> end
-
+<if_expr> ::= if <if_clauses> do: <expression_list> end | if <if_clauses> do: <expression_list>, else <if_clauses> end
+<if_clauses> ::= <comparison_expr>
