@@ -28,7 +28,7 @@
     | <function_name>(<parameter_list>)
     | <function_name>(<parameter_list>) when <guards_expr>
 <parameter_list> ::= <parameter> | <parameter>,<parameter_list>
-<parameter> ::= <parameter_name> | <parameter_name> \\ <constant>
+<parameter> ::= <parameter_name> | <parameter_name> \\ <expression>
 <parameter_name> ::= <identifier_name>
 
 # Function
