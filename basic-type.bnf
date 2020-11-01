@@ -15,7 +15,7 @@
     | <float>
     | <boolean>
     | <atom>
-    | <alias>
+    | <nested_alias>
     | <string>
     | <charlist>
     | <sigil>
@@ -91,7 +91,7 @@
     | :<alpha><atom_term>
     | :<string>
     | <boolean>
-    | <alias>
+    | <nested_alias>
 <atom_term_list> ::= <atom_term> | <atom_term><atom_term_list>
 <atom_term> ::= @
     | <alpha>
@@ -154,6 +154,7 @@
     |<integer>
     |<term>
 
+
 # Tuple
 
 # Sigil
@@ -177,3 +178,11 @@
     |<term>
 
 # Map
+<map>::= %{<key_value_pairs>}
+<key_value_pairs> ::= <key_value_pair> | <key_value_pair>, <key_value_pairs>
+<key_value_pair> ::= <map_key>: <map_key_value>
+<map_key>::= <term> | <boolean> | <atom>
+<map_key_value> ::= <term> | <boolean>
+
+# Struct
+<struct> ::= %<nested_alias>{<key_value_pairs>}

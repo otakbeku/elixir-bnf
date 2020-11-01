@@ -1,6 +1,11 @@
+<expression> ::= <module_definition>
+    | <function_call>
+    | <nameless_function>
+    | <function_capture>
+
 # Module
 
-<module_definition> ::= defmodule <alias> do <module_body> end
+<module_definition> ::= defmodule <nested_alias> do <module_body> end
 <module_body> ::= <expression_list><module_body>
     | <module_specifix_expr><module_body>
     | <expression_list>
@@ -30,7 +35,7 @@
 
 <arg_list> ::= <arg>,<arg_list> | <arg>
 <arg> ::= <expression>
-<function_call> ::= <alias>.<named_function_call>
+<function_call> ::= <nested_alias>.<named_function_call>
     | <named_function_call>
     | <nameless_function_call>
 <named_function_call> ::= <named_function_call_term>(<arg_list>) | <named_function_call_term><arg_list>
