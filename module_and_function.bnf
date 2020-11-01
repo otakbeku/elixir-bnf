@@ -26,7 +26,7 @@
     | , do: (<expression_list>)
 <function_head> ::= <function_name>
     | <function_name>(<parameter_list>)
-    | <function_name>(<parameter_list>) when <expression>
+    | <function_name>(<parameter_list>) when <guards_expr>
 <parameter_list> ::= <parameter> | <parameter>,<parameter_list>
 <parameter> ::= <parameter_name> | <parameter_name> \\ <constant>
 <parameter_name> ::= <identifier_name>
