@@ -78,10 +78,6 @@
 # Boolean
 
 <boolean> ::= true | false | :true | :false
-    | <strict_boolean_expr>
-    | <membership_expr>
-    | <comparison_expr>
-    | <text_match_expr>
 
 # Atom/Symbol
 
@@ -154,6 +150,13 @@
 
 # Tuple
 
+<tuple> ::= {<tuple_element_array>}
+<tuple_element_array> ::= <tuple_elements> | <tuple_elements>,<tuple_element_array>
+<tuple_elements> ::= <string>
+    |<atom>
+    |<integer>
+    |<term>
+
 # Sigil
 
 <sigil> ::= ~<sigil_char><sigil_args><sigil_modifier>
@@ -167,12 +170,6 @@
     | < <string_term_list> >
 <sigil_char> ::= <alpha>
 <sigil_modifier> ::= <alpha>
-<tuple> ::= {<tuple_element_array>}
-<tuple_element_array> ::= <tuple_elements> | <tuple_elements>,<tuple_element_array>
-<tuple_elements> ::= <string>
-    |<atom>
-    |<integer>
-    |<term>
 
 # Map
 <map>::= %{<key_value_pairs>}
