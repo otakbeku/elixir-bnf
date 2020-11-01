@@ -1,3 +1,19 @@
+# Error Handling
+
+<try_rescue_catch_after> ::= try do <expression_list> <try_error_handling> end
+    | try do <expression_list> <try_error_handling> <try_final_handling> end
+<try_error_handling> ::= rescue <right_arrow_expr_list>
+    | catch <right_arrow_expr_list>
+    | rescue <right_arrow_expr_list> catch <right_arrow_expr_list>
+<try_final_handling> ::= <try_else_term>
+    | <try_after_term>
+    | <try_else_term> <try_after_term>
+<try_else_term> ::= else <right_arrow_expr_list>
+<try_after_term> ::= after <expression_list>
+<try_expression_list> ::= <right_arrow_expr_list> | <right_arrow_expr_list> <expression_list>
+<right_arrow_expr_list> ::= <right_arrow_expr>; | <right_arrow_expr>; <right_arrow_expr_list>
+<right_arrow_expr> ::= <parameter_list> -> <expression_list>
+
 # Case
 
 <case_expr> ::= case <patterns> do <case_clause_exprs> end
@@ -6,9 +22,9 @@
 <case_clause_expr> ::= <case_condition_expr> -> <case_result>
 <case_condition_expr> ::= _ | <integer> | <float> | <alpha> | <guards> | :error | <term> | ^<term>
 <guards> ::= <guard_clause> when <guards_expr>
-<guards_expr> ::= <comparison_expr> 
-    | <boolean_strict_expr> 
-    | <arithmetic_expr> 
+<guards_expr> ::= <comparison_expr>
+    | <boolean_strict_expr>
+    | <arithmetic_expr>
     | <unary_expr>
     | <in_comparison_operator>
     | <bitwise_expr>
@@ -27,7 +43,7 @@
 <map_key>::= <term> | <boolean> | <atom>
 <map_key_value> ::= <term> | <boolean>
 
-    
+
 # Cond
 <cond_expr> ::= cond do <cond_clauses> end
 <cond_clauses> ::= <<cond_clauses> | <cond_clauses>

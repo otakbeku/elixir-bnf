@@ -10,8 +10,19 @@
 <binary_digit> ::= 0 | 1
 <octal_digit> ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7
 <hexadecimal_digit> ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | A | B | C | D | E | F | a | b | c | d | e | f
-<elixir_program_cli> ::= <alpha> | <integer> | <float> | <boolean> | <atom> | <string> | <list> | <tuple>
-<alphanum> ::= <alpha> | <decimal>
+<alphanum> ::= <alpha> | <decimal> | _
+<term> ::= <integer>
+    | <float>
+    | <boolean>
+    | <atom>
+    | <alias>
+    | <string>
+    | <charlist>
+    | <sigil>
+    | <list>
+    | <tuple>
+    | <map>
+    | <struct>
 
 <assignment> ::= <variable_name> = <expression>
 <variable_name> ::= <identifier_name>
@@ -61,7 +72,7 @@
 
 # Float
 
-<float> ::= <neg_float> 
+<float> ::= <neg_float>
     | <non_neg_float>
 <neg_float> ::= -<non_neg_float>
 <non_neg_float> ::= <decimal>.<decimal> | <decimal>.<decimal>e+<decimal> | <decimal>.<decimal>e-<decimal>
@@ -91,7 +102,8 @@
 <aliasing_alias> ::= alias <nested_alias> | alias <nested_alias>, as: <alias>
 <require_alias> ::= require <nested_alias> | require <nested_alias>.{<alias_list>}
 <alias_list> ::= <nested_alias>, <alias_list>
-<import_alias> ::= import <nested_alias> | import <nested_alias>, only: <keyword_list>
+<import_alias> ::= import <nested_alias> | import <nested_alias>, <import_options> <keyword_list>
+<import_options> ::= only: | except:
 <use_alias> ::= use <nested_alias>
 
 # String
@@ -113,7 +125,7 @@
 
 # Char List
 
-<charlist>::='<string_term_list>'
+<charlist>::='<charlist_term_list>'
 <charlist_term_list> ::= <charlist_term> | <charlist_term><charlist_term_list>
 <charlist_term> ::= "
     | <alpha>
@@ -140,20 +152,24 @@
 
 # Tuple
 
+# Sigil
+
+<sigil> ::= ~<sigil_char><sigil_args><sigil_modifier>
+<sigil_args> ::= / <string_term_list> /
+    | | <string_term_list> |
+    | " <string_term_list> "
+    | ' <string_term_list> '
+    | ( <string_term_list> )
+    | [ <string_term_list> ]
+    | { <string_term_list> }
+    | < <string_term_list> >
+<sigil_char> ::= <alpha>
+<sigil_modifier> ::= <alpha>
 <tuple> ::= {<tuple_element_array>}
 <tuple_element_array> ::= <tuple_elements> | <tuple_elements>,<tuple_element_array>
 <tuple_elements> ::= <string>
     |<atom>
     |<integer>
     |<term>
-
-# Function
-
-<nameless_function> ::= fn <parameter_list> -> <exoression_list> end
-
-
-# Process
-
-# Port kayaknya belum perlu
 
 # Map
