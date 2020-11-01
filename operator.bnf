@@ -1,35 +1,31 @@
-!! Unary Expression
+## Unary Expression
 	<unary_expr> ::= <unary_positive_expr> | <unary_negative_expr>
-	<unary_positive_expr> ::= +<unary_term>
-	<unary_positive_term> ::= <integer> | <float> | (unary_positive_term)
+	<unary_positive_expr> ::= +<unary_positive_term> | <unary_positive_term>
+	<unary_positive_term> ::= <integer> | <float> | (<unary_expr>)
 	<unary_negative_expr> ::= -<unary_negative_term>
-	<unary_negative_term> ::= <non_neg_integer> | <non_neg_float> | <unary_negative_term> | <neg_integer> | <neg_float>
-	### Edge Case: -(<-neg_integer>) instead of -<neg_integer>, -(<neg_float>) instead of -<neg_float>
+	<unary_negative_term> ::= <non_neg_integer> | <non_neg_float> | (<neg_integer>) | (<neg_float>) | (<unary_expr>)
 ## Arithmetic Expression
 	<arithmetic_expr> ::= <arithmetic_expr> <arithmetic_operator> <arithmetic_expr> | <arithmetic_term> | (<arithmetic_expr>)
 	<arithmetic_term> ::= <integer> | <float>
 	<arithmetic_operator> ::= + | - | * | /
 ## List Expression
-	<list_expr> ::= <list> | <list_operation_expr> <list_concatenation_expr> | <list_operation_expr> <list_subtraction_expr>
-	<list_concatenation_expr> ::= ++ <list_concatenation_term>
-	<list_concatenation_term> ::= <term> | <list_concatenation_term> ++ <term>
-	<list_subtraction_expr> ::= -- <list_subtraction_term>
-	<list_subtraction_term> ::= <list> || <list> -- <list_subtraction_term>
+	<list_expr> ::= <list> | <list_concatenation_expr> | <list_subtraction_expr> | (<list_expr>)
+	<list_concatenation_expr> ::= <list_expr> ++ <list_expr> || <list_expr> ++ <term> 
+	<list_subtraction_expr> ::= <list_expr> -- <list_expr>
 ## Boolean Expression
-	<boolean_expr> ::= <boolean> | <boolean_not_expr> | <term> <relaxed_and_expr> | <boolean_expr> <strict_and_expr> | <boolean_expr> <relaxed_and_expr> | <boolean_expr> <strict_or_expr> | <boolean_expr> <relaxed_or_expr>
-  ### Boolean AND
-	<strict_and_expr> ::= and <term> | and <boolean_not_expr>
-	<relaxed_and_expr> ::= && <term> | && <boolean_not_expr>
-  ### Boolean OR
-	<strict_or_expr> ::= or <term> | or <boolean_not_expr>
-	<relaxed_or_expr> ::= || <term> | || <boolean_not_expr>
-  ### Boolean NOT
-	<boolean_not_expr> ::= <strict_not_expr> | <relaxed_not_expr>
-	<strict_not_expr> ::= not(<value>)
-	<relaxed_not_expr> ::= !<value>
-!! Membership Expression
+	<boolean_expr> ::= <strict_boolean_expr> | <relaxed_boolean_expr> | <relaxed_boolean_term> | <not_boolean_expr> | (<boolean_expr>)
+	<not_boolean_expr> ::= not(<boolean_expr>) | !<boolean_expr>
+	<relaxed_boolean_expr> ::= <boolean_expr> <relaxed_boolean_operator> <boolean_expr>
+	<strict_boolean_expr> ::= <strict_boolean_term> <strict_boolean_operator> <boolean_expr>
+	<relaxed_boolean_operator> ::= && | ||
+	<strict_boolean_operator> ::= and | or
+	<strict_boolean_term> ::= <boolean>
+	<relaxed_boolean_term> ::= <term>
+## Membership Expression
 	<membership_in_expr> ::= <element> in <collection>
 	<membership_notin_expr> ::= <element> not in <collection>
+	<element> ::= <term>
+	<collection> ::= <list> | <range_expr>
 ## Range Expression
 	<range_expr> ::= <range_term>..<range_term>
 	<range_term> ::= <integer> | <function_expr>
@@ -47,6 +43,13 @@
 ## Comparison Expression
 	<comparison_expr> :: <term> <comparison_operator> <term>
 	<comparison_operator> :: == | === | != | !== | < | > | <= | >=
+## Bitwise Expression
+<bitwise_expr> ::= <integer> &&& <integer>
+    | <integer> <<< <integer>
+    | <integer> >>> <integer>
+    | <integer> ^^^ <integer>
+    | <integer> ||| <integer>
+    | ---<integer>
 !! . - dot operator
 !! :: - type operator
 !! => - see %{}
