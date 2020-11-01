@@ -1,4 +1,4 @@
-<expression> ::= <module_definition>
+<module_function_expression> ::= <module_definition>
     | <function_call>
     | <nameless_function>
     | <function_capture>
@@ -7,10 +7,10 @@
 
 <module_definition> ::= defmodule <nested_alias> do <module_body> end
 <module_body> ::= <expression_list><module_body>
-    | <module_specifix_expr><module_body>
+    | <module_specific_expr><module_body>
     | <expression_list>
-    | <module_specifix_expr>
-<module_specifix_expr> ::= <named_function_def> | @<attribute_name> <attribute_expression>
+    | <module_specific_expr>
+<module_specific_expr> ::= <named_function_def> | @<attribute_name> <attribute_expression>
 <attribute_name> ::= <identifier_name>
 <attribute_expression> ::= <list>
     | <tuples>
@@ -19,6 +19,7 @@
     | <integer>
     | <bitstrings>
     | <function_capture>
+    | <variable_name>
 <named_function_def> ::= <def_token> <function_head> <do_block>
 <def_token> ::= def | defp
 <do_block> ::=  do <expression_list> end
@@ -35,17 +36,16 @@
 
 <arg_list> ::= <arg>,<arg_list> | <arg>
 <arg> ::= <expression>
-<function_call> ::= <nested_alias>.<qualified_function_call><arg_term>
-    | <non_qualified_function_call><arg_term>
+<function_call> ::= <nested_alias>.<qualified_function_name><arg_term>
+    | <function_name><arg_term>
     | <nameless_function_call>
 <arg_term> ::= (<arg_list>) | <arg_list>
-<non_qualified_function_call> ::= <operation> | <function_name>
-<qualified_function_call> ::= <operation> | <function_name> | <string>
+<qualified_function_name> ::= <function_name> | <qualified_function_string>
 <qualified_function_string>::="<qualified_function_string_list>"
 <qualified_function_string_list> ::= <string_term_vanilla> | <string_term_vanilla><qualified_function_string_list>
 <function_name> ::= <identifier_name>
 <nameless_function> ::= fn <parameter_list> -> <expression_list> end
-<function_capture> ::= &<nested_alias>.<function_name>/<integer> | &<function_name>/<integer>
+<function_capture> ::= &<nested_alias>.<qualified_function_name>/<integer> | &<function_name>/<integer>
 <nameless_function_call> ::= <function_name>.(<arg_list>)
     | <nameless_function>.(<arg_list>)
     | (<function_capture>).(<arg_list>)

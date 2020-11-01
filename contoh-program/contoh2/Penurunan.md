@@ -75,17 +75,17 @@ end
 ```
 # Function Definition 1
 
-### <module_body> -> <module_specifix_expr><module_body>
+### <module_body> -> <module_specific_expr><module_body>
 ```
 defmodule Contoh2 do 
-    <module_specifix_expr>
+    <module_specific_expr>
     <module_body>
 end
 
 <expression_list>
 ```
 
-### <module_specifix_expr> -> <named_function_def> -> <def_token> <function_head> <do_block> -> def <function_head> <do_block>
+### <module_specific_expr> -> <named_function_def> -> <def_token> <function_head> <do_block> -> def <function_head> <do_block>
 ```
 defmodule Contoh2 do 
     def <function_head> <do_block>
@@ -558,7 +558,7 @@ end
 
 # Function Definition 3
 
-### <module_body> -> <module_specifix_expr> -> <named_function_def> -> <def_token> <function_head> <do_block> -> def <function_head> <do_block> -> def <function_name>(<parameter_list>) <do_block>
+### <module_body> -> <module_specific_expr> -> <named_function_def> -> <def_token> <function_head> <do_block> -> def <function_head> <do_block> -> def <function_name>(<parameter_list>) <do_block>
 ```
 defmodule Contoh2 do 
     def is_prime_number(a, i) when i < a / 2 and rem(a, i) != 0 do 
