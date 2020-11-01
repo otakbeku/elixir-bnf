@@ -23,10 +23,10 @@
 <case_condition_expr> ::= _ | <integer> | <float> | <alpha> | <guards> | :error | <term> | ^<term>
 <guards> ::= <guard_clause> when <guards_expr>
 <guards_expr> ::= <comparison_expr>
-    | <boolean_strict_expr>
+    | <strict_boolean_expr>
     | <arithmetic_expr>
     | <unary_expr>
-    | <in_comparison_operator>
+    | <membership_expr>
     | <bitwise_expr>
 <case_result> ::= <term>
 <guard_clause> ::= <def_token> <function_head> | <term>
