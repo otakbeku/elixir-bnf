@@ -23,6 +23,8 @@
     | <tuple>
     | <map>
     | <struct>
+    | <arithmetic_expr>
+    | <boolean_expr>
 
 <assignment> ::= <variable_name> = <expression>
 <variable_name> ::= <identifier_name>
