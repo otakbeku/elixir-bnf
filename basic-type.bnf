@@ -82,7 +82,7 @@
     | <membership_expr>
     | <comparison_expr>
     | <text_match_expr>
-    
+
 # Atom/Symbol
 
 <atom> ::= :<operator>
@@ -114,12 +114,14 @@
 
 <string>::="<string_term_list>"
 <string_term_list> ::= <string_term> | <string_term><string_term_list>
-<string_term> ::= '
+<string_term> ::=
+    | <string_term_vanilla>
+    | <string_interpolation>
+<string_term_vanilla> ::= '
     | <alpha>
     | <decimal>
     | <special_characters>
     | <escape_sequence>
-    | <string_interpolation>
 <string_interpolation> ::= #{ <expression> }
 <escape_sequence> ::= \<escape_codes>
     | \x<decimal_digit><decimal_digit>
@@ -137,11 +139,6 @@
     | <special_characters>
     | <escape_sequence>
     | <string_interpolation>
-<string_interpolation> ::= #{ <expression> }
-<escape_sequence> ::= \<escape_codes>
-    | \x<decimal_digit><decimal_digit>
-    | \u<decimal_digit><decimal_digit><decimal_digit><decimal_digit>
-    | \u{<decimal>}
 
 # List
 <list> ::= [<list_element_array>]
