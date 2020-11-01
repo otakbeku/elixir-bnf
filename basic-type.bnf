@@ -23,11 +23,6 @@
     | <tuple>
     | <map>
     | <struct>
-    | <arithmetic_expr>
-    | <boolean_expr>
-    | <membership_expr>
-    | <comparison_expr>
-    | <text_match_expr>
 
 <assignment> ::= <variable_name> = <expression>
 <variable_name> ::= <identifier_name>
