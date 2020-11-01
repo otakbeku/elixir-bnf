@@ -55,5 +55,5 @@
 <if_clauses> ::= <comparison_expr>
 
 # unless
-<unless_expr> ::= unless <if_clauses> do <expression_list> end
+<unless_expr> ::= unless <unless_clauses> do <expression_list> end
 <unless_clauses> ::= <comparison_expr>
