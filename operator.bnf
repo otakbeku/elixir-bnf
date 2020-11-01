@@ -1,3 +1,18 @@
+## Operator Expressions
+	<operator_expr> ::=
+		| <pipeline_expr>
+		| <pin_expr>
+		| <bitwise_expr>
+	<operator_term_expr> ::=
+		| <unary_expr>
+		| <arithmetic_expr>
+		| <list_expr>
+		| <range_expr>
+		| <string_concat_expr>
+		| <boolean_expr>
+		| <membership_expr>
+		| <text_match_expr>
+		| <comparison_expr>
 ## Unary Expression :: number()
 	<unary_expr> ::= <unary_positive_expr> | <unary_negative_expr>
 	<unary_positive_expr> ::= +<unary_positive_term>
@@ -15,18 +30,18 @@
 	<list_term> ::= <list> | <variable_name>
 ## Boolean Expression :: term()
 	<boolean_expr> ::= <relaxed_boolean_expr> | <strict_boolean_expr>
-	<boolean_term> ::= <term> | <variable_name>
+	<boolean_term> ::= <term> | <operator_term_expr> | <variable_name>
 ## Relaxed Boolean Expression :: term()
-	<relaxed_boolean_expr> ::= <relaxed_boolean_expr> <relaxed_boolean_operator> <term> | !<relaxed_boolean_expr> | <boolean_term> | (<relaxed_boolean_expr>)
+	<relaxed_boolean_expr> ::= <relaxed_boolean_expr> <relaxed_boolean_operator> <boolean_term> | !<relaxed_boolean_expr> | <boolean_term> | (<relaxed_boolean_expr>)
 	<relaxed_boolean_operator> ::= && | ||
 ## Strict Boolean Expression :: boolean()	
-	<strict_boolean_expr> ::= <strict_boolean_expr> <strict_boolean_operator> <term> | !<strict_boolean_expr> | not(<strict_boolean_expr>) | <boolean_term> | (<strict_boolean_expr>)
+	<strict_boolean_expr> ::= <strict_boolean_expr> <strict_boolean_operator> <boolean_term> | !<strict_boolean_expr> | not(<strict_boolean_expr>) | <boolean_term> | (<strict_boolean_expr>)
 	<strict_boolean_operator> ::= and | or
 ## Membership Expression :: boolean()
 	<membership_expr> := <membership_in_expr> | <membership_not_in_expr>
 	<membership_in_expr> ::= <element> in <collection>
 	<membership_not_in_expr> ::= <element> not in <collection>
-	<element> ::= <term> | <variable_name> 
+	<element> ::= <term> | <operator_term_expr> | <variable_name> 
 	<collection> ::= <list> | <range_expr> | <variable_name>
 ## Range Expression :: N/A
 	<range_expr> ::= <range_term>..<range_term> | <variable_name>
@@ -41,9 +56,9 @@
 ## Pin Expression :: N/A
 	<pin_expr> ::= ^<variable_name> = <term>
 ## Comparison Expression ::= boolean()
-	<comparison_expr> :: <comparison_expr> <comparison_operator> <comparison_expr> | <term> | (<comparison_expr>)
+	<comparison_expr> :: <comparison_expr> <comparison_operator> <comparison_expr> | <comparison_term> | (<comparison_expr>)
 	<comparison_operator> :: == | === | != | !== | < | > | <= | >=
-	<comparison_term> ::= <term> | <variable_name>
+	<comparison_term> ::= <term> | <operator_term_expr> | <variable_name>
 ## Bitwise Expression
 	<bitwise_expr> ::= <variable_name> <bitwise_operator> <variable_name> | ~~~<variable_name>
 	<bitwise_operator> ::= 	<<< | >>> | ^^^ | |||
