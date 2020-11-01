@@ -1,45 +1,50 @@
 ## Unary Expression :: number()
 	<unary_expr> ::= <unary_positive_expr> | <unary_negative_expr>
 	<unary_positive_expr> ::= +<unary_positive_term>
-	<unary_positive_term> ::= <integer> | <float> | (<unary_expr>)
+	<unary_positive_term> ::= <integer> | <float> | (<unary_expr>) | <variable_name>
 	<unary_negative_expr> ::= -<unary_negative_term>
-	<unary_negative_term> ::= <non_neg_integer> | <non_neg_float> | (<neg_integer>) | (<neg_float>) | (<unary_expr>)
+	<unary_negative_term> ::= <non_neg_integer> | <non_neg_float> | (<neg_integer>) | (<neg_float>) | (<unary_expr>) | <variable_name>
 ## Arithmetic Expression :: number()
-	<arithmetic_expr> ::= <arithmetic_expr> <arithmetic_operator> <arithmetic_expr> | <number> | (<arithmetic_expr>)
-	<number> ::= <integer> | <float>
+	<arithmetic_expr> ::= <arithmetic_expr> <arithmetic_operator> <arithmetic_expr> | <arithmetic_term> | (<arithmetic_expr>)
 	<arithmetic_operator> ::= + | - | * | /
+	<arithmetic_term> ::= <integer> | <float> | <variable_name>	
 ## List Expression :: list()
-	<list_expr> ::= <list_concatenation_expr> | <list_subtraction_expr>  | (<list_expr>)
+	<list_expr> ::= <list_concatenation_expr> | <list_subtraction_expr>  | <list_term> | (<list_expr>)
 	<list_concatenation_expr> ::= <list_expr> ++ <list_expr> | <list_expr> ++ <term>
 	<list_subtraction_expr> ::= <list_expr> -- <list>
+	<list_term> ::= <list> | <variable_name>
 ## Boolean Expression :: term()
 	<boolean_expr> ::= <relaxed_boolean_expr> | <strict_boolean_expr>
+	<boolean_term> ::= <term> | <variable_name>
 ## Relaxed Boolean Expression :: term()
-	<relaxed_boolean_expr> ::= <relaxed_boolean_expr> <relaxed_boolean_operator> <relaxed_boolean_expr> | !<relaxed_boolean_expr> | <term> | (<relaxed_boolean_expr>)
+	<relaxed_boolean_expr> ::= <relaxed_boolean_expr> <relaxed_boolean_operator> <term> | !<relaxed_boolean_expr> | <boolean_term> | (<relaxed_boolean_expr>)
 	<relaxed_boolean_operator> ::= && | ||
 ## Strict Boolean Expression :: boolean()	
-	<strict_boolean_expr> ::= <strict_boolean_expr> <strict_boolean_operator> <term> | !<strict_boolean_expr> | not(<strict_boolean_expr>) | <boolean> | (<strict_boolean_expr>)
+	<strict_boolean_expr> ::= <strict_boolean_expr> <strict_boolean_operator> <term> | !<strict_boolean_expr> | not(<strict_boolean_expr>) | <boolean_term> | (<strict_boolean_expr>)
 	<strict_boolean_operator> ::= and | or
 ## Membership Expression :: boolean()
 	<membership_expr> := <membership_in_expr> | <membership_not_in_expr>
-	<membership_in_expr> ::= <term> in <collection>
-	<membership_not_in_expr> ::= <term> not in <collection>
-	<collection> ::= <list> | <range_expr>
+	<membership_in_expr> ::= <element> in <collection>
+	<membership_not_in_expr> ::= <element> not in <collection>
+	<element> ::= <term> | <variable_name> 
+	<collection> ::= <list> | <range_expr> | <variable_name>
 ## Range Expression :: N/A
-	<range_expr> ::= <integer>..<integer>
+	<range_expr> ::= <range_term>..<range_term> | <variable_name>
+	<range_term> ::= <integer> | <variable_name>
 ## String Concatenation Expression :: string()
-	<string_concat_expr> ::= <string_concat_expr> <> <string_concat_expr> | <string> | (<string_concat_expr>)
+	<string_concat_expr> ::= <string_concat_expr> <> <string_concat_expr> | <string_concat_term> | (<string_concat_expr>)
+	<string_term> ::=  <string> | <variable_name>
 ## Pipeline Expression :: N/A
 	<pipeline_expr> ::= <expression> |> <function_call>
 ## Text-based Match Expression :: boolean()
-	<text_match_expr> ::= <string> =~ <string>
+	<text_match_expr> ::= <string_term> =~ <string_term>
 ## Pin Expression :: N/A
 	<pin_expr> ::= ^<variable_name> = <term>
-## Match Expression :: N/A
-	<match_expr> ::= <value> = <pattern>
 ## Comparison Expression ::= boolean()
 	<comparison_expr> :: <comparison_expr> <comparison_operator> <comparison_expr> | <term> | (<comparison_expr>)
-	<comparison_operator> :: == | === | != | !== | < | > | <= | >=		
+	<comparison_operator> :: == | === | != | !== | < | > | <= | >=
+	<comparison_term> ::= <term> | <variable_name>
 ## Bitwise Expression
-	<bitwise_expr> ::= <integer> <bitwise_operator> <integer> | ~~~<integer>
+	<bitwise_expr> ::= <variable_name> <bitwise_operator> <variable_name> | ~~~<variable_name>
 	<bitwise_operator> ::= 	<<< | >>> | ^^^ | |||
+	<bitwise_term> ::= <integer> | <variable_name>
