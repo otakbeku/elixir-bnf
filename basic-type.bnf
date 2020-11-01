@@ -27,6 +27,13 @@
 <variable_name> ::= <identifier_name>
 <expression_list> ::= <expression>; | <expression>; <expression_list>
 
+# Expressions
+
+<expression> ::= <module_function_expression>
+    | <operator_expr>
+    | <operator_term_expr>
+    | <term>
+
 # Identifier
 
 <identifier_name> ::= <identifier_start>
