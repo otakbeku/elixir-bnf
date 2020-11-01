@@ -29,9 +29,11 @@
 
 # Expressions
 
-<expression> ::= <module_function_expression>
+<expression> ::= <assignment>
+    | <module_function_expression>
     | <operator_expr>
     | <operator_term_expr>
+    | <operator_variable>
     | <term>
 
 # Identifier
