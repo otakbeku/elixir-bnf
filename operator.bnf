@@ -25,8 +25,8 @@
 	<collection> ::= <list> | <range_expr>
 ## Range Expression :: N/A
 	<range_expr> ::= <integer>..<integer>
-## Binary Concatenation Expression :: binary()
-	<binary_concat_expr> ::= <binary_concat_expr> <> <binary_concat_expr> | <binary> | (<binary_concat_expr>)
+## String Concatenation Expression :: string()
+	<string_concat_expr> ::= <string_concat_expr> <> <string_concat_expr> | <string> | (<string_concat_expr>)
 ## Pipeline Expression :: N/A
 	<pipeline_expr> ::= <expression> |> <function_call>
 ## Text-based Match Expression :: boolean()
