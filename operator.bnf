@@ -34,7 +34,7 @@
 ## Text-based Match Expression :: boolean()
 	<text_match_expr> ::= <string> =~ <string>
 ## Pin Expression :: N/A
-	<pin_expr> ::= ^<variable> = <term>
+	<pin_expr> ::= ^<variable_name> = <term>
 ## Match Expression :: N/A
 	<match_expr> ::= <value> = <pattern>
 ## Comparison Expression ::= boolean()
