@@ -5,12 +5,11 @@
 <alpha_lower> ::= a | b | c | e | g | h | j | k | l | m | n | p | r | s | t | v | w | x | y | z
 <special_character> ::= ! | $ | % | & | ( | ) | * | + | , | - | . | / | : | ; | < | = | > | ? | @ | [ | ] | ^ | _ | ` | { | | | } | ~
 <escape_codes> ::= " | ' | \ | a | b | d | e | f | n | r | s | t | v | 0 | #
-<zero> ::= 0
-<digits_exclude_zero> ::= 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+<decimal_digit> ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
 <binary_digit> ::= 0 | 1
 <octal_digit> ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7
 <hexadecimal_digit> ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | A | B | C | D | E | F | a | b | c | d | e | f
-<alphanum> ::= <alpha> | <decimal> | _
+<alphanum> ::= <alpha> | <decimal_digit>
 <term> ::= <integer>
     | <float>
     | <boolean>
@@ -35,8 +34,7 @@
     | <identifier_start><identifier_continue><identifier_end>
 <identifier_start> ::= <alpha_lower> | _
 <identifier_continue> ::= <alphanum> | <alphanum><identifier_continue>
-<identifier_end> ::= <alpha>
-    | <decimal>
+<identifier_end> ::= <alpha_num>
     | ?
     | !
 
@@ -80,18 +78,20 @@
 # Boolean
 
 <boolean> ::= true | false | :true | :false
-    
+
 # Atom/Symbol
 
-<atom> ::= :@
-    | :<alpha><atom_term>
+<atom> ::= :<operator>
+    | :<alpha>
+    | :<alpha><atom_term_continue>
+    | :<alpha><atom_term_continue><atom_term_end>
     | :<string>
     | <boolean>
     | <nested_alias>
-<atom_term_list> ::= <atom_term> | <atom_term><atom_term_list>
-<atom_term> ::= @
-    | <alpha>
-    | <decimal>
+<atom_term_continue> ::= <alphanum> | <alphanum><atom_term_continue>
+<atom_term_end> ::= <alpha_num>
+    | ?
+    | !
 
 # Alias
 
@@ -110,12 +110,14 @@
 
 <string>::="<string_term_list>"
 <string_term_list> ::= <string_term> | <string_term><string_term_list>
-<string_term> ::= '
+<string_term> ::=
+    | <string_term_vanilla>
+    | <string_interpolation>
+<string_term_vanilla> ::= '
     | <alpha>
     | <decimal>
     | <special_characters>
     | <escape_sequence>
-    | <string_interpolation>
 <string_interpolation> ::= #{ <expression> }
 <escape_sequence> ::= \<escape_codes>
     | \x<decimal_digit><decimal_digit>
@@ -133,11 +135,6 @@
     | <special_characters>
     | <escape_sequence>
     | <string_interpolation>
-<string_interpolation> ::= #{ <expression> }
-<escape_sequence> ::= \<escape_codes>
-    | \x<decimal_digit><decimal_digit>
-    | \u<decimal_digit><decimal_digit><decimal_digit><decimal_digit>
-    | \u{<decimal>}
 
 # List
 <list> ::= [<list_element_array>]

@@ -26,20 +26,23 @@
     | , do: (<expression_list>)
 <function_head> ::= <function_name>
     | <function_name>(<parameter_list>)
-    | <function_name>(<parameter_list>) when <expression>
+    | <function_name>(<parameter_list>) when <guards_expr>
 <parameter_list> ::= <parameter> | <parameter>,<parameter_list>
-<parameter> ::= <parameter_name> | <parameter_name> \\ <constant>
+<parameter> ::= <parameter_name> | <parameter_name> \\ <expression>
 <parameter_name> ::= <identifier_name>
 
 # Function
 
 <arg_list> ::= <arg>,<arg_list> | <arg>
 <arg> ::= <expression>
-<function_call> ::= <nested_alias>.<named_function_call>
-    | <named_function_call>
+<function_call> ::= <nested_alias>.<qualified_function_call><arg_term>
+    | <non_qualified_function_call><arg_term>
     | <nameless_function_call>
-<named_function_call> ::= <named_function_call_term>(<arg_list>) | <named_function_call_term><arg_list>
-<named_function_call_term> ::= <operation> | <function_name>
+<arg_term> ::= (<arg_list>) | <arg_list>
+<non_qualified_function_call> ::= <operation> | <function_name>
+<qualified_function_call> ::= <operation> | <function_name> | <string>
+<qualified_function_string>::="<qualified_function_string_list>"
+<qualified_function_string_list> ::= <string_term_vanilla> | <string_term_vanilla><qualified_function_string_list>
 <function_name> ::= <identifier_name>
 <nameless_function> ::= fn <parameter_list> -> <expression_list> end
 <function_capture> ::= &<nested_alias>.<function_name>/<integer> | &<function_name>/<integer>

@@ -12,7 +12,7 @@
 		| <membership_expr>
 		| <text_match_expr>
 		| <comparison_expr>
-		| <bitwise_expr>		
+		| <bitwise_expr>
 ## Unary Expression :: number()
 	<unary_expr> ::= <unary_positive_expr> | <unary_negative_expr>
 	<unary_positive_expr> ::= +<unary_positive_term>
@@ -22,7 +22,7 @@
 ## Arithmetic Expression :: number()
 	<arithmetic_expr> ::= <arithmetic_expr> <arithmetic_operator> <arithmetic_expr> | <arithmetic_term> | (<arithmetic_expr>)
 	<arithmetic_operator> ::= + | - | * | /
-	<arithmetic_term> ::= <integer> | <float> | <variable_name>	
+	<arithmetic_term> ::= <integer> | <float> | <variable_name>
 ## List Expression :: list()
 	<list_expr> ::= <list_concatenation_expr> | <list_subtraction_expr>  | <list_term> | (<list_expr>)
 	<list_concatenation_expr> ::= <list_expr> ++ <list_expr> | <list_expr> ++ <term>
@@ -34,14 +34,14 @@
 ## Relaxed Boolean Expression :: term()
 	<relaxed_boolean_expr> ::= <relaxed_boolean_expr> <relaxed_boolean_operator> <boolean_term> | !<relaxed_boolean_expr> | <boolean_term> | (<relaxed_boolean_expr>)
 	<relaxed_boolean_operator> ::= && | ||
-## Strict Boolean Expression :: boolean()	
+## Strict Boolean Expression :: boolean()
 	<strict_boolean_expr> ::= <strict_boolean_expr> <strict_boolean_operator> <boolean_term> | !<strict_boolean_expr> | not(<strict_boolean_expr>) | <boolean_term> | (<strict_boolean_expr>)
 	<strict_boolean_operator> ::= and | or
 ## Membership Expression :: boolean()
 	<membership_expr> := <membership_in_expr> | <membership_not_in_expr>
 	<membership_in_expr> ::= <element> in <collection>
 	<membership_not_in_expr> ::= <element> not in <collection>
-	<element> ::= <term> | <operator_term_expr> | <variable_name> 
+	<element> ::= <term> | <operator_term_expr> | <variable_name>
 	<collection> ::= <list> | <range_expr> | <variable_name>
 ## Range Expression :: N/A
 	<range_expr> ::= <range_term>..<range_term> | <variable_name>
