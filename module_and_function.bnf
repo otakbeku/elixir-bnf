@@ -39,7 +39,7 @@
 <function_call> ::= <nested_alias>.<qualified_function_name><arg_term>
     | <function_name><arg_term>
     | <nameless_function_call>
-<arg_term> ::= (<arg_list>) | <arg_list>
+<arg_term> ::= (<arg_list>) | () | <arg_list>
 <qualified_function_name> ::= <function_name> | <qualified_function_string>
 <qualified_function_string>::="<qualified_function_string_list>"
 <qualified_function_string_list> ::= <string_term_vanilla> | <string_term_vanilla><qualified_function_string_list>
