@@ -78,7 +78,11 @@
 # Boolean
 
 <boolean> ::= true | false | :true | :false
-
+    | <strict_boolean_expr>
+    | <membership_expr>
+    | <comparison_expr>
+    | <text_match_expr>
+    
 # Atom/Symbol
 
 <atom> ::= :<operator>
