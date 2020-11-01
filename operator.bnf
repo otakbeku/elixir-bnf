@@ -9,9 +9,9 @@
 	<number> ::= <integer> | <float> 
 	<arithmetic_operator> ::= + | - | * | /
 ## List Expression :: list()
-	<list_expr> ::= <list_concatenation_expr> | <list_subtraction_expr> | <list> | (<list_expr>)
-	<list_concatenation_expr> ::= <list_expr> ++ <list_expr> | <list_expr> ++ <term> 
-	<list_subtraction_expr> ::= <list_expr> -- <list_expr> | <list_expr> -- <list>
+	<list_expr> ::= <list_concatenation_expr> | <list_subtraction_expr>  | (<list_expr>)
+	<list_concatenation_expr> ::= <list_expr> ++ <list_expr> | <list_expr> ++ <term>
+	<list_subtraction_expr> ::= <list_expr> -- <list>
 ## Relaxed Boolean Expression :: term()
 	<relaxed_boolean_expr> ::= <relaxed_boolean_expr> <relaxed_boolean_operator> <relaxed_boolean_expr> | !<relaxed_boolean_expr> | <term> | (<relaxed_boolean_expr>)
 	<relaxed_boolean_operator> ::= && | ||
