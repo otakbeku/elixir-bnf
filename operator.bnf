@@ -1,3 +1,18 @@
+<expression> ::= <unary_expr>
+	| <arithmetic_expr>
+	| <list_expr>
+	| <relaxed_boolean_expr>
+	| <strict_boolean_expr>
+	| <membership_expr>
+	| <range_expr>
+	| <string_concat_expr>
+	| <pipeline_expr>
+	| <text_match_expr>
+	| <pin_expr>
+	| <match_expr>
+	| <comparison_expr>
+	| <bitwise_expr>
+
 ## Unary Expression :: number()
 	<unary_expr> ::= <unary_positive_expr> | <unary_negative_expr>
 	<unary_positive_expr> ::= +<unary_positive_term>
@@ -6,7 +21,7 @@
 	<unary_negative_term> ::= <non_neg_integer> | <non_neg_float> | (<neg_integer>) | (<neg_float>) | (<unary_expr>)
 ## Arithmetic Expression :: number()
 	<arithmetic_expr> ::= <arithmetic_expr> <arithmetic_operator> <arithmetic_expr> | <number> | (<arithmetic_expr>)
-	<number> ::= <integer> | <float> 
+	<number> ::= <integer> | <float>
 	<arithmetic_operator> ::= + | - | * | /
 ## List Expression :: list()
 	<list_expr> ::= <list_concatenation_expr> | <list_subtraction_expr>  | (<list_expr>)
@@ -15,7 +30,7 @@
 ## Relaxed Boolean Expression :: term()
 	<relaxed_boolean_expr> ::= <relaxed_boolean_expr> <relaxed_boolean_operator> <relaxed_boolean_expr> | !<relaxed_boolean_expr> | <term> | (<relaxed_boolean_expr>)
 	<relaxed_boolean_operator> ::= && | ||
-## Strict Boolean Expression :: boolean()	
+## Strict Boolean Expression :: boolean()
 	<strict_boolean_expr> ::= <strict_boolean_expr> <strict_boolean_operator> <term> | !<strict_boolean_expr> | not(<strict_boolean_expr>) | <boolean> | (<strict_boolean_expr>)
 	<strict_boolean_operator> ::= and | or
 ## Membership Expression :: boolean()
@@ -37,7 +52,7 @@
 	<match_expr> ::= <value> = <pattern>
 ## Comparison Expression ::= boolean()
 	<comparison_expr> :: <comparison_expr> <comparison_operator> <comparison_expr> | <term> | (<comparison_expr>)
-	<comparison_operator> :: == | === | != | !== | < | > | <= | >=		
+	<comparison_operator> :: == | === | != | !== | < | > | <= | >=
 ## Bitwise Expression
 	<bitwise_expr> ::= <integer> <bitwise_operator> <integer> | ~~~<integer>
 	<bitwise_operator> ::= 	<<< | >>> | ^^^ | |||
