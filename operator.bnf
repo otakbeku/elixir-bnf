@@ -1,8 +1,8 @@
 ## Operator Expressions
-	<operator_expr> ::=
+	<operator_expression> ::=
 		| <pipeline_expr>
 		| <pin_expr>
-	<operator_term_expr> ::=
+	<operator_term_expression> ::=
 		| <unary_expr>
 		| <arithmetic_expr>
 		| <list_expr>
