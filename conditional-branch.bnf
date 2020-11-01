@@ -22,12 +22,7 @@
 <case_clause_expr> ::= <case_condition_expr> -> <case_result>
 <case_condition_expr> ::= _ | <integer> | <float> | <alpha> | <guards> | :error | <term> | ^<term>
 <guards> ::= <guard_clause> when <guards_expr>
-<guards_expr> ::= <comparison_expr>
-    | <strict_boolean_expr>
-    | <arithmetic_expr>
-    | <unary_expr>
-    | <in_comparison_operator>
-    | <bitwise_expr>
+<guards_expr> ::= <operator_term_expr>
 <case_result> ::= <term>
 <guard_clause> ::= <def_token> <function_head> | <term>
 
@@ -47,5 +42,5 @@
 <if_clauses> ::= <comparison_expr>
 
 # unless
-<unless_expr> ::= unless <if_clauses> do <expression_list> end
+<unless_expr> ::= unless <unless_clauses> do <expression_list> end
 <unless_clauses> ::= <comparison_expr>
