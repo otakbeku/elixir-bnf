@@ -6,8 +6,8 @@
 	<unary_negative_term> ::= <non_neg_integer> | <non_neg_float> | (<neg_integer>) | (<neg_float>) | (<unary_expr>)
 ## Arithmetic Expression :: number()
 	<arithmetic_expr> ::= <arithmetic_expr> <arithmetic_operator> <arithmetic_expr> | <number> | (<arithmetic_expr>
+	<number> ::= <integer> | <float>
 	<arithmetic_operator> ::= + | - | * | /
-	<number> ::= <integer> | <float> 	
 ## List Expression :: list()
 	<list_expr> ::= <list_concatenation_expr> | <list_subtraction_expr>  | (<list_expr>)
 	<list_concatenation_expr> ::= <list_expr> ++ <list_expr> | <list_expr> ++ <term>
