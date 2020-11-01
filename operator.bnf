@@ -60,6 +60,6 @@
 	<comparison_operator> :: == | === | != | !== | < | > | <= | >=
 	<comparison_term> ::= <term> | <operator_term_expr> | <variable_name>
 ## Bitwise Expression
-	<bitwise_expr> ::= <variable_name> <bitwise_operator> <variable_name> | ~~~<variable_name>
+	<bitwise_expr> ::= <bitwise_term> <bitwise_operator> <bitwise_term> | ~~~<variable_name>
 	<bitwise_operator> ::= 	<<< | >>> | ^^^ | |||
 	<bitwise_term> ::= <integer> | <variable_name>
