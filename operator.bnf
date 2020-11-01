@@ -2,7 +2,6 @@
 	<operator_expr> ::=
 		| <pipeline_expr>
 		| <pin_expr>
-		| <bitwise_expr>
 	<operator_term_expr> ::=
 		| <unary_expr>
 		| <arithmetic_expr>
@@ -13,6 +12,7 @@
 		| <membership_expr>
 		| <text_match_expr>
 		| <comparison_expr>
+		| <bitwise_expr>		
 ## Unary Expression :: number()
 	<unary_expr> ::= <unary_positive_expr> | <unary_negative_expr>
 	<unary_positive_expr> ::= +<unary_positive_term>
