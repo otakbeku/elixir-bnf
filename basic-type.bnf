@@ -92,7 +92,7 @@
 <atom> ::= :@
     | :<alpha><atom_term>
     | :<string>
-    | <boolean>
+    | :true | :false
     | <nested_alias>
 <atom_term_list> ::= <atom_term> | <atom_term><atom_term_list>
 <atom_term> ::= @
