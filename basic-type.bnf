@@ -43,7 +43,7 @@
     | <identifier_start><identifier_continue><identifier_end>
 <identifier_start> ::= <alpha_lower> | _
 <identifier_continue> ::= <alphanum> | <alphanum><identifier_continue>
-<identifier_end> ::= <alpha_num>
+<identifier_end> ::= <alphanum>
     | ?
     | !
 
@@ -98,7 +98,7 @@
     | <boolean>
     | <nested_alias>
 <atom_term_continue> ::= <alphanum> | <alphanum><atom_term_continue>
-<atom_term_end> ::= <alpha_num>
+<atom_term_end> ::= <alphanum>
     | ?
     | !
 
@@ -106,7 +106,7 @@
 
 <nested_alias> ::= <alias> | <alias>.<nested_alias>
 <alias> ::= <alpha_upper><alias_term_list>
-<alias_term_list> ::= <alpha_num> | <alpha_num><alias_term_list>
+<alias_term_list> ::= <alphanum> | <alphanum><alias_term_list>
 
 <aliasing_alias> ::= alias <nested_alias> | alias <nested_alias>, as: <alias>
 <require_alias> ::= require <nested_alias> | require <nested_alias>.{<alias_list>}
