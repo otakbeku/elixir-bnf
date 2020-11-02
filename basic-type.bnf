@@ -148,13 +148,7 @@
 # List
 <list> ::= [<list_element_array>]
 <list_element_array> ::= <list_element> | <list_element>,<list_element_array>
-<list_elements> ::= <string>
-    ||
-    |[
-    |]
-    |<atom>
-    |<integer>
-    |<term>
+<list_elements> ::= <term>
 
 
 # Tuple
