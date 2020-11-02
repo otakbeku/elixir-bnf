@@ -46,7 +46,7 @@ end
 <expression_list>
 ```
 
-### <alias_term_list> -> <alpha_num><alias_term_list> -> <alpha><alias_term_list> -> <alpha_lower><alias_term_list> -> o<alias_term_list>
+### <alias_term_list> -> <alphanum><alias_term_list> -> <alpha><alias_term_list> -> <alpha_lower><alias_term_list> -> o<alias_term_list>
 ```
 defmodule Co<alias_term_list> do 
     <module_body> 
@@ -65,7 +65,7 @@ end
 <expression_list>
 ```
 
-### <alias_term_list> -> <alpha_num> -> <decimal> -> <decimal_digit> -> 2
+### <alias_term_list> -> <alphanum> -> <decimal> -> <decimal_digit> -> 2
 ```
 defmodule Contoh2 do 
     <module_body> 
@@ -137,7 +137,7 @@ end
 <expression_list>
 ```
 
-### <identifier_continue> -> <alpha_num><identifier_continue> -> <alpha><identifier_continue> -> <alpha_lower><identifier_continue> -> s<identifier_continue>
+### <identifier_continue> -> <alphanum><identifier_continue> -> <alpha><identifier_continue> -> <alpha_lower><identifier_continue> -> s<identifier_continue>
 ```
 defmodule Contoh2 do 
     def is<identifier_continue><identifier_end>(<parameter_list>) when <guards_expr> <do_block>
@@ -147,7 +147,7 @@ end
 <expression_list>
 ```
 
-### <identifier_continue> -> <alpha_num><identifier_continue> -> <alpha><identifier_continue> -> _<identifier_continue>
+### <identifier_continue> -> <alphanum><identifier_continue> -> <alpha><identifier_continue> -> _<identifier_continue>
 ```
 defmodule Contoh2 do 
     def is_<identifier_continue><identifier_end>(<parameter_list>) when <guards_expr> <do_block>
@@ -167,7 +167,7 @@ end
 <expression_list>
 ```
 
-### <identifier_continue> -> <alpha_num> -> <alpha> -> <alpha_lower> -> e
+### <identifier_continue> -> <alphanum> -> <alpha> -> <alpha_lower> -> e
 ```
 defmodule Contoh2 do 
     def is_prime_numbe<identifier_end>(<parameter_list>) when <guards_expr> <do_block>
@@ -177,7 +177,7 @@ end
 <expression_list>
 ```
 
-### <identifier_end> -> <alpha_num> -> <alpha> -> <alpha_lower> -> r
+### <identifier_end> -> <alphanum> -> <alpha> -> <alpha_lower> -> r
 ```
 defmodule Contoh2 do 
     def is_prime_number(<parameter_list>) when <guards_expr> <do_block>
@@ -403,7 +403,7 @@ end
 <expression_list>
 ```
 
-### <nested_alias> -> <alias> -> <alpha_upper><alias_term_list> -> I<alias_term_list> -> I<alpha_num> -> I<alpha>  -> I<alpha_upper> -> IO
+### <nested_alias> -> <alias> -> <alpha_upper><alias_term_list> -> I<alias_term_list> -> I<alphanum> -> I<alpha>  -> I<alpha_upper> -> IO
 ```
 defmodule Contoh2 do 
     def is_prime_number(a, i) when i < a / 2 and rem(a, i) != 0 do 
