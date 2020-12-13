@@ -12,7 +12,7 @@ class ElixirParser():
         self.boolean_operator = ['and', 'or', "|", "&"]
         self.binary_operator_first = [
             *self.comparison_operator, *self.arithmetic_operator, *self.boolean_operator ]
-        self.term_first = ["var_name", "number", '"', "[", "_", "atom_name", "funct_name"]
+        self.term_first = ["var_name", "number", '"', "[", "_", "alias_name", "funct_name"]
 
     def accept(self, term):
         if term != self.sym:
@@ -68,7 +68,7 @@ class ElixirParser():
         logging.info("expression")
         if self.sym == "defmodule":
             self.module_definition()
-        elif self.sym in ["atom_name", "funct_name"]:
+        elif self.sym in ["alias_name", "funct_name"]:
             self.function_call()
         elif self.sym in self.term_first:
             self.assignment()
@@ -78,16 +78,16 @@ class ElixirParser():
         <expression_prime> ::= epsilon | <expression_list>
         """
         logging.info("expression_prime")
-        if self.sym in ["defmodule", "atom_name", "var_name", "funct_name"]:
+        if self.sym in ["defmodule", "alias_name", "var_name", "funct_name"]:
             self.expression_list()
 
     def module_definition(self):
         """
-        <module_definition> ::= defmodule atom_name do <module_expression_list> end
+        <module_definition> ::= defmodule alias_name do <module_expression_list> end
         """
         logging.info("module_definition")
         self.accept("defmodule")
-        self.accept("atom_name")
+        self.accept("alias_name")
         self.accept("do")
         self.module_expression_list()
         self.accept("end")
@@ -107,7 +107,7 @@ class ElixirParser():
         logging.info("module_expression")
         if self.sym == "def":
             self.function_definition()
-        if self.sym in ["atom_name", "funct_name"]:
+        if self.sym in ["alias_name", "funct_name"]:
             self.function_call()
 
     def module_expression_prime(self):
@@ -115,7 +115,7 @@ class ElixirParser():
         <module_expression_prime> ::= epsilon | <module_expression_list>
         """
         logging.info("module_expression_prime")
-        if self.sym in ["def", "atom_name", "funct_name"]:
+        if self.sym in ["def", "alias_name", "funct_name"]:
             self.module_expression_list()
 
     def function_definition(self):
@@ -212,7 +212,7 @@ class ElixirParser():
             self.string()
         elif self.sym == "[":
             self.list_expr()
-        elif self.sym in ['funct_name', 'atom_name']:
+        elif self.sym in ['funct_name', 'alias_name']:
             self.function_call()
 
     def term_extended(self):
@@ -275,13 +275,13 @@ class ElixirParser():
 
     def function_call(self):
         """ 
-        <function_call> ::= atom_name . funct_name ( <arg_list> ) 
+        <function_call> ::= alias_name . funct_name ( <arg_list> ) 
             | funct_name ( <arg_list> )
         """
         logging.info("function_call")
 
-        if self.sym == "atom_name":
-            self.accept("atom_name")
+        if self.sym == "alias_name":
+            self.accept("alias_name")
             self.accept(".")
             self.accept("funct_name")
             self.accept("(")
@@ -310,7 +310,7 @@ class ElixirParser():
         logging.info("argument")
         if self.sym in self.term_first:
             self.term_extended()
-        elif self.sym in ['funct_name', 'atom_name']:
+        elif self.sym in ['funct_name', 'alias_name']:
             self.function_call()
 
     def argument_prime(self):
